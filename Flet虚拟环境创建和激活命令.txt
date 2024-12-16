@@ -1,0 +1,4 @@
+md first-flet-app
+cd first-flet-app
+python -m venv .venv
+.venv\Scripts\activate
