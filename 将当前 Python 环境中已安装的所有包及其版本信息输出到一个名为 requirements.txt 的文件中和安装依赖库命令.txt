@@ -1,0 +1,12 @@
+pip freeze > requirements.txt
+
+pip freeze > requirements.txt 这个命令的意思是将当前 Python 环境中已安装的所有包及其版本信息输出到一个名为 requirements.txt 的文件中。具体而言：
+
+pip freeze：列出当前环境中所有已安装的包及其版本，以特定格式显示。
+>：将前面命令的输出重定向到后面的文件中。
+requirements.txt：这是输出的文件名，通常用于记录项目所依赖的所有包及其版本，方便在其他环境中安装相同的依赖。
+执行这个命令后，你就可以在 requirements.txt 文件中看到类似于以下格式的内容：
+
+package_name==version_number
+CopyInsert
+这样的文件可以通过 pip install -r requirements.txt 命令来重新安装指定的依赖。
