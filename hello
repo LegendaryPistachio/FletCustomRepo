@@ -1,0 +1,58 @@
+import flet as ft
+import os
+
+def main(page: ft.Page):
+    """应用主界面配置"""
+    # 页面基础设置
+    page.title = "Flet 示例应用"
+    page.theme_mode = ft.ThemeMode.LIGHT
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    
+    # 获取版本信息
+    app_version = os.getenv('APP_VERSION', '1.0.0')
+    
+    # 构建信息显示
+    build_info = ft.Text(
+        f"版本: {app_version}",
+        size=14,
+        color=ft.Colors.GREY_600
+    )
+    
+    # 主功能按钮
+    action_button = ft.ElevatedButton(
+        "开始体验",
+        icon=ft.Icons.PLAY_ARROW,
+        on_click=lambda e: show_welcome_message(page)
+    )
+    
+    # 界面布局
+    page.add(
+        ft.Column([
+            ft.Icon(ft.Icons.APP_REGISTRATION, size=64, color=ft.Colors.BLUE_500),
+            ft.Text("欢迎使用", size=32, weight=ft.FontWeight.BOLD),
+            ft.Text("Flet 跨平台应用", size=18, color=ft.Colors.BLUE_700),
+            ft.Divider(height=30),
+            action_button,
+            ft.Divider(height=20),
+            build_info,
+        ],
+        alignment=ft.MainAxisAlignment.CENTER,
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER)
+    )
+
+def show_welcome_message(page: ft.Page):
+    """显示欢迎信息"""
+    snack_bar = ft.SnackBar(
+        content=ft.Text("🎉 应用正常运行！"),
+        action="好的",
+        duration=3000
+    )
+    page.open(snack_bar)
+
+# 应用启动点
+if __name__ == "__main__":
+    ft.app(
+        target=main,
+        view=ft.AppView.FLET_APP
+    )
